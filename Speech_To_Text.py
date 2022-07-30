@@ -1,5 +1,4 @@
 from Komutlar import *
-from komutlar2 import *
 
 name = input("Adınızı giriniz: ")
 konus('Geldim'+name)

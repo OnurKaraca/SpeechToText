@@ -24,7 +24,7 @@ def rec(ask=False):
         if ask:
             konus(ask)
 
-        r.adjust_for_ambient_noise(myvoice, duration=3)
+        r.adjust_for_ambient_noise(myvoice, duration=1)
         audio = r.listen(myvoice)
 
         ses=''
@@ -36,24 +36,30 @@ def rec(ask=False):
             konus('sistemde sorun var galiba')
         return ses
 
-def response(ses):  
+def response(ses):
 
     if 'nasılsın' in ses:
         konus('İyilik, sağlık. Sen nasılsın?')
-        
+
     elif 'iyi ben de sağol' in ses:
         konus('Aman sen iyi ol da')
-        
+
+    elif 'papağan' in ses:
+        konus('tekrarlıyorum')
+
+    elif 'Aferin sana' in ses:
+        konus('sağol canım')
+
     elif 'saat kaç' in ses:
         konus('Saati yazdım')
         print(datetime.now().strftime('%H:%M:%S'))
-        
+
     elif 'arama yap' in ses:
         search = rec('söyle hemen bulayım şak diye')
         url = 'https://google.com/search?q='+search
         webbrowser.get().open(url)
         konus(search + 'için bunları buldum!')
-        
+
     elif 'kapat' in ses:
         konus('hadi kaçtım ben')
         sys.exit()
