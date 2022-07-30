@@ -1,4 +1,4 @@
-from Komutlar import *
+from Komutlar import*
 
 name = input("Adınızı giriniz: ")
 konus('Geldim'+name)
@@ -6,6 +6,7 @@ konus('Ne yapmak istiyorsun?')
 
 while (True):
 
-    ses = rec()
+    ses = rec().lower()
     print(ses)
-    response(ses)
+    ans(ses)
+    cevap(ses)

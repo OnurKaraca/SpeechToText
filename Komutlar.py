@@ -18,11 +18,13 @@ def konus(string):
     os.remove(file)
 
 
+
 def rec(ask=False):
 
+    if ask:
+        konus(ask)
+
     with sr.Microphone() as myvoice:
-        if ask:
-            konus(ask)
 
         r.adjust_for_ambient_noise(myvoice, duration=1)
         audio = r.listen(myvoice)
@@ -36,21 +38,10 @@ def rec(ask=False):
             konus('sistemde sorun var galiba')
         return ses
 
-def response(ses):
 
-    if 'nasılsın' in ses:
-        konus('İyilik, sağlık. Sen nasılsın?')
+def cevap(ses):
 
-    elif 'iyi ben de sağol' in ses:
-        konus('Aman sen iyi ol da')
-
-    elif 'papağan' in ses:
-        konus('tekrarlıyorum')
-
-    elif 'Aferin sana' in ses:
-        konus('sağol canım')
-
-    elif 'saat kaç' in ses:
+    if 'saat kaç' in ses:
         konus('Saati yazdım')
         print(datetime.now().strftime('%H:%M:%S'))
 
@@ -63,3 +54,11 @@ def response(ses):
     elif 'kapat' in ses:
         konus('hadi kaçtım ben')
         sys.exit()
+
+def ans(ses):
+    komutlar = {"merhaba":'merhaba',"nasılsın":'iyidir, sen nasılsın?',"iyiyim":'iyi olmana sevindim'
+    ,"aferin sana":'sağol canım'}
+    for i,j in komutlar.items():
+        if i in ses:
+            konus(j)
+            break
